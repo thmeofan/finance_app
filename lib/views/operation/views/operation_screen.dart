@@ -3,6 +3,7 @@ import 'package:finance_app/consts/app_text_styles/operation_text_style.dart';
 import 'package:finance_app/consts/app_text_styles/synopsis_text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../../../util/shared_pref_service.dart';
 import 'constructor_screen.dart';
 
 class OperationScreen extends StatefulWidget {
@@ -14,10 +15,22 @@ class _OperationScreenState extends State<OperationScreen> {
   List<Map<String, dynamic>> operations = [];
   String _operationType = 'Доходы';
 
-  void _addOperation(Map<String, dynamic> operation) {
+  @override
+  void initState() {
+    super.initState();
+    _loadOperations();
+  }
+
+  void _loadOperations() async {
+    operations = await SharedPreferencesService.loadOperations();
+    setState(() {});
+  }
+
+  void _addOperation(Map<String, dynamic> operation) async {
     setState(() {
       operations.add(operation);
     });
+    await SharedPreferencesService.saveOperations(operations);
   }
 
   List<Map<String, dynamic>> get _filteredOperations {

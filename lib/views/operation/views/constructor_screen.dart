@@ -29,7 +29,8 @@ class _ConstructorScreenState extends State<ConstructorScreen> {
       'type': _operationType,
     };
 
-    Navigator.of(context).pop(operation);
+    Navigator.of(context)
+        .pop(operation); // Pop the operation to the previous screen
   }
 
   @override
