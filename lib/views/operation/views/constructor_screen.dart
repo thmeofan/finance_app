@@ -1,31 +1,40 @@
-import 'package:finance_app/consts/app_colors.dart';
-import 'package:finance_app/consts/app_text_styles/operation_text_style.dart';
-import 'package:finance_app/consts/app_text_styles/synopsis_text_style.dart';
+import 'package:finance_app/views/app/widgets/chosen_action_button_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'constructor_screen.dart';
+import '../../../consts/app_colors.dart';
+import '../../../consts/app_text_styles/operation_text_style.dart';
+import '../../../consts/app_text_styles/synopsis_text_style.dart';
 
-class OperationScreen extends StatefulWidget {
+class ConstructorScreen extends StatefulWidget {
   @override
-  _OperationScreenState createState() => _OperationScreenState();
+  _ConstructorScreenState createState() => _ConstructorScreenState();
 }
 
-class _OperationScreenState extends State<OperationScreen> {
-  List<Map<String, dynamic>> operations = [];
+class _ConstructorScreenState extends State<ConstructorScreen> {
+  final _descriptionController = TextEditingController();
+  final _amountController = TextEditingController();
   String _operationType = 'Доходы';
 
-  void _addOperation(Map<String, dynamic> operation) {
-    setState(() {
-      operations.add(operation);
-    });
-  }
+  void _saveOperation() {
+    final description = _descriptionController.text;
+    final amount = double.tryParse(_amountController.text);
 
-  List<Map<String, dynamic>> get _filteredOperations {
-    return operations.where((op) => op['type'] == _operationType).toList();
+    if (description.isEmpty || amount == null) {
+      return;
+    }
+
+    final operation = {
+      'description': description,
+      'amount': amount,
+      'type': _operationType,
+    };
+
+    Navigator.of(context).pop(operation);
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -131,55 +140,62 @@ class _OperationScreenState extends State<OperationScreen> {
               );
             },
           ),
-          Expanded(
-            child: _filteredOperations.isEmpty
-                ? Center(child: Text('Вы ещё не ввели свои $_operationType '))
-                : ListView.builder(
-                    itemCount: _filteredOperations.length,
-                    itemBuilder: (ctx, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          tileColor: AppColors.lightGreyColor,
-                          title: Text(
-                            '${_filteredOperations[index]['description']} ₽ ',
-                            style: OperationTextStyle.tileSum,
-                          ),
-                          subtitle: Text(
-                            _filteredOperations[index]['amount'].toString(),
-                            style: OperationTextStyle.tileSubtitle,
-                          ),
-                          trailing: Text(
-                            DateTime.now().toString().substring(0, 10),
-                            style: OperationTextStyle.date,
-                          ),
-                        ),
-                      );
-                    },
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                _operationType,
+                style: OperationTextStyle.type,
+              ),
+              SizedBox(
+                height: screenSize.height * 0.02,
+              ),
+              const Text(
+                'Описание',
+                style: OperationTextStyle.description,
+              ),
+              SizedBox(
+                height: screenSize.height * 0.01,
+              ),
+              TextField(
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Например продукты',
+                  labelStyle: OperationTextStyle.hint,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-          ),
+                ),
+              ),
+              SizedBox(
+                height: screenSize.height * 0.02,
+              ),
+              const Text(
+                'Сумма',
+                style: OperationTextStyle.description,
+              ),
+              SizedBox(
+                height: screenSize.height * 0.01,
+              ),
+              TextField(
+                controller: _amountController,
+                decoration: InputDecoration(
+                  labelText: '₽ 0,00',
+                  labelStyle: OperationTextStyle.hint,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+              ),
+              ChosenActionButton(
+                text: 'Продолжить',
+                onTap: _saveOperation,
+              )
+            ]),
+          )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.lightGreyColor,
-        shape: CircleBorder(),
-        child: const Icon(
-          Icons.add,
-          color: AppColors.darkGreyColor,
-        ),
-        onPressed: () async {
-          final result = await Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ConstructorScreen()),
-          );
-
-          if (result != null) {
-            _addOperation(result);
-          }
-        },
       ),
     );
   }

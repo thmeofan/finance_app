@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
 
-class CalendarTextStyle {
-  static const TextStyle dateTitle = TextStyle(
+class ProfileTextStyle {
+  static const TextStyle user = TextStyle(
     fontFamily: 'SF Pro Text',
-    fontSize: 10.0,
-    height: 12 / 10,
-    fontWeight: FontWeight.w400,
+    fontSize: 14.0,
+    height: 20 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.darkGreyColor,
+  );
+  static const TextStyle email = TextStyle(
+    fontFamily: 'SF Pro Text',
+    fontSize: 14.0,
+    height: 20 / 14,
+    fontWeight: FontWeight.w600,
     color: AppColors.lightGreyColor,
   );
-  static const TextStyle date = TextStyle(
-    fontFamily: 'SF Pro Text',
-    fontSize: 10.0,
-    height: 12 / 10,
-    fontWeight: FontWeight.w400,
-  //  color: AppColors.whiteColor,
-  );
-  static const TextStyle team = TextStyle(
+  static const TextStyle tile = TextStyle(
     fontFamily: 'SF Pro Text',
     fontSize: 12.0,
     height: 16 / 12,
     fontWeight: FontWeight.w400,
-    color: AppColors.lightGreyColor,
+    color: AppColors.darkGreyColor,
   );
   static const TextStyle vs = TextStyle(
     fontFamily: 'SF Pro Text',

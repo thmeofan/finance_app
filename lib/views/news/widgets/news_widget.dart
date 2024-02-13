@@ -22,7 +22,7 @@ class NewsWidget extends StatelessWidget {
               .pushNamed(AppRoutes.article, arguments: newsModel);
         },
         child: Container(
-          height: screenSize.height * 0.25,
+          height: screenSize.height * 0.3,
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(vertical: screenSize.width * 0.01),
           decoration: BoxDecoration(
@@ -79,10 +79,7 @@ class NewsWidget extends StatelessWidget {
                             style: NewsTextStyle.date,
                           ),
                           Spacer(),
-                          Text(
-                            'Читать далее',
-                            style: NewsTextStyle.date,
-                          ),
+                          const Text('Читать далее', style: NewsTextStyle.read),
                           SizedBox(
                             width: screenSize.width * 0.02,
                           ),

@@ -1,8 +1,7 @@
+import 'package:finance_app/consts/app_text_styles/synopsis_text_style.dart';
+import 'package:finance_app/views/app/widgets/banner_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../consts/app_colors.dart';
-import '../../../consts/app_text_styles/onboarding_text_style.dart';
 import '../../../data/models/news_model.dart';
 import '../../../util/app_routes.dart';
 import '../widgets/news_item_widget.dart';
@@ -15,16 +14,16 @@ class SynopsisScreen extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-        extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: const Text(
-            'Hockey news',
-            style: OnboardingTextStyle.screenTitle,
+            'Привет!',
+            style: SynopsisTextStyle.appbar,
           ),
           actions: [
             IconButton(
+              iconSize: 24,
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.profile);
               },
@@ -33,8 +32,8 @@ class SynopsisScreen extends StatelessWidget {
           ],
         ),
         body: Container(
-          //  decoration: const BoxDecoration(color: AppColors.lightGreyColor),
           child: Column(children: [
+            OperationBanner(),
             Expanded(
               child: ListView.builder(
                 itemCount: newsModel.length,

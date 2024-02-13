@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       newsModel: news,
     ),
     const CalculatorScreen(),
-    const OperationScreen(),
+    OperationScreen(),
     // const ProfileScreen()
   ];
 
@@ -39,55 +39,45 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               'assets/icons/home.svg',
-              width: size.height * 0.035,
-              height: size.height * 0.035,
+              width: size.height * 0.032,
+              height: size.height * 0.032,
               color: currentIndex == 0
                   ? AppColors.orangeColor
                   : AppColors.darkGreyColor,
             ),
-            label: 'Categories',
+            label: 'Главная',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               'assets/icons/activity.svg',
-              width: size.height * 0.035,
-              height: size.height * 0.035,
+              width: size.height * 0.032,
+              height: size.height * 0.032,
               color: currentIndex == 1
                   ? AppColors.orangeColor
                   : AppColors.darkGreyColor,
             ),
-            label: 'Progress',
+            label: 'Новости',
           ),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/icons/statistics.svg',
-                width: size.height * 0.035,
-                height: size.height * 0.035,
+                width: size.height * 0.032,
+                height: size.height * 0.032,
                 color: currentIndex == 2
                     ? AppColors.orangeColor
                     : AppColors.darkGreyColor,
               ),
-              label: 'News'),
+              label: 'Калькулятор'),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/icons/wallet.svg',
-                width: size.height * 0.035,
-                height: size.height * 0.035,
+                width: size.height * 0.032,
+                height: size.height * 0.032,
                 color: currentIndex == 3
                     ? AppColors.orangeColor
                     : AppColors.darkGreyColor,
               ),
-              label: 'Calendar'),
-          // BottomNavigationBarItem(
-          //     icon: SvgPicture.asset(
-          //       'assets/icons/settings.svg',
-          //       width: size.height * 0.04,
-          //       height: size.height * 0.06,
-          //       color: currentIndex == 4
-          //           ? AppColors.orangeColor
-          //           : AppColors.lightGreyColor,
-          //     ),
-          //     label: 'Settings'),
+              label: 'Операции'),
         ],
         onTap: (index) {
           setState(() {
@@ -104,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // color: AppColors.lightBlueColor,
             ),
         unselectedLabelStyle: const TextStyle(
-          color: AppColors.lightGreyColor,
+          color: AppColors.midGreyColor,
         ),
       ),
     );

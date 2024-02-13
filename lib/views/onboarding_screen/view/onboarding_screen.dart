@@ -1,3 +1,4 @@
+import 'package:finance_app/views/onboarding_screen/widgets/welcome_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,6 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 items: const [
                   IntroductionWidget(),
                   ReviewWidget(),
+                  WelcomeWidget(),
                 ],
                 carouselController: _carouselController,
                 options: CarouselOptions(
@@ -78,54 +80,70 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       children: [
                         Text(
                           _current == 0
-                              ? 'Let\'s dive into\nthe world of hockey!'
-                              : 'We value your feedback',
+                              ? 'Добро пожаловать!'
+                              : _current == 1
+                                  ? 'Хотите купить жилье? '
+                                  : 'Будьте в курсе новостей!',
                           style: OnboardingTextStyle.introduction,
                           textAlign: TextAlign.start,
                           softWrap: true,
-                          overflow: TextOverflow.visible,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: size.height * 0.005,
+                      height: size.height * 0.01,
                     ),
                     Row(
                       children: [
                         Flexible(
                           child: Text(
                             _current == 0
-                                ? 'Welcome to the app that will redefine your hockey match forecasting experience. Get ready for an immersive journey where accurate predictions meet the thrill of the game!'
-                                : 'Every day we are getting better due to your ratings and reviews — that helps us protect your accounts.',
+                                ? 'Рассчитывайте приток денежных средств без особых усилий. Будьте в курсе своего бюджета вместе с нами!'
+                                : _current == 1
+                                    ? 'Рассчитайте ипотечный кредит мгновенно. Укажите сумму, срок и процентную ставку. Начните свой путь к владению жильем!'
+                                    : 'Читайте актуальные статьи о событиях в мире финансов. Присоединяйтесь к нам и управляйте своими финансами!',
                             style: OnboardingTextStyle.description,
+                            textAlign: TextAlign.start,
+                            softWrap: true,
+                            overflow: TextOverflow.visible,
                           ),
                         ),
                       ],
                     ),
                     const Spacer(),
-                    ChosenActionButton(
-                      onTap: () async {
-                        context.read<OnboardingCubit>().setFirstTime();
-                        Navigator.pushReplacementNamed(context, AppRoutes.home);
-                      },
-                      text: 'Продолжить',
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(2, (index) {
-                        return Container(
-                          width: size.width * 0.02,
+                      children: List.generate(3, (index) {
+                        return AnimatedContainer(
+                          duration: Duration(milliseconds: 200),
+                          curve: Curves.easeInOut,
+                          width: _current == index
+                              ? size.width * 0.075
+                              : size.width * 0.02,
                           height: size.width * 0.02,
                           margin: const EdgeInsets.symmetric(
                               vertical: 1.0, horizontal: 2.0),
                           decoration: BoxDecoration(
-                            shape: BoxShape.circle,
+                            shape: BoxShape.rectangle,
+                            borderRadius:
+                                BorderRadius.circular(size.width * 0.01),
                             color: _current == index
                                 ? AppColors.darkGreyColor
                                 : AppColors.lightGreyColor,
                           ),
                         );
                       }),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    ChosenActionButton(
+                      onTap: () async {
+                        context.read<OnboardingCubit>().setFirstTime();
+                        Navigator.pushReplacementNamed(context, AppRoutes.home);
+                      },
+                      text: 'Продолжить',
                     ),
                   ],
                 ),

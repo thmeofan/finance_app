@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
 
-class NewsTextStyle {
+class CalculatorTextStyle {
   static const TextStyle title = TextStyle(
     fontFamily: 'SF Pro Text',
     fontSize: 18.0,
-    height: 20 / 18,
-    fontWeight: FontWeight.w800,
+    height: 22 / 18,
+    fontWeight: FontWeight.w600,
     color: AppColors.darkGreyColor,
   );
   static const TextStyle preview = TextStyle(
@@ -24,21 +24,21 @@ class NewsTextStyle {
     fontWeight: FontWeight.w400,
     color: AppColors.darkGreyColor,
   );
-  static const TextStyle read = TextStyle(
+  static const TextStyle credit = TextStyle(
     fontFamily: 'SF Pro Text',
-    fontSize: 12.0,
-    height: 18 / 12,
-    fontWeight: FontWeight.w400,
+    fontSize: 18.0,
+    height: 20 / 18,
+    fontWeight: FontWeight.w600,
     color: AppColors.orangeColor,
   );
-  static const TextStyle articleTitle = TextStyle(
+  static const TextStyle detailTitle = TextStyle(
     fontFamily: 'SF Pro Display',
     fontSize: 18.0,
     height: 20 / 18,
     fontWeight: FontWeight.w800,
     color: AppColors.darkGreyColor,
   );
-  static const TextStyle articleText = TextStyle(
+  static const TextStyle numbers = TextStyle(
     fontFamily: 'SF Pro Display',
     fontSize: 14.0,
     height: 20 / 14,

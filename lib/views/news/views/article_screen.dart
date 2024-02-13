@@ -1,9 +1,8 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../consts/app_colors.dart';
 import '../../../consts/app_text_styles/news_text_style.dart';
-import '../../../consts/app_text_styles/onboarding_text_style.dart';
+import '../../../consts/app_text_styles/synopsis_text_style.dart';
 import '../../../data/models/news_model.dart';
 
 class ArticleScreen extends StatelessWidget {
@@ -15,37 +14,29 @@ class ArticleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        centerTitle: true,
+        // centerTitle: true,
         elevation: 0,
-        title: const Text('News', style: OnboardingTextStyle.screenTitle),
-        //  backgroundColor: AppColors.blackColor,
+        title: const Text(
+          'Назад',
+          style: SynopsisTextStyle.appbar,
+        ),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           icon: SvgPicture.asset(
-            'assets/icons/back.svg',
-            width: screenSize.width * 0.1,
-            height: screenSize.width * 0.1,
+            'assets/icons/arrow.svg',
+            width: screenSize.width * 0.08,
+            height: screenSize.width * 0.08,
           ),
         ),
       ),
       body: Container(
-        // decoration: const BoxDecoration(color: AppColors.blackColor),
         child: Column(
           children: [
             SizedBox(
-              height: screenSize.height * 0.12,
-            ),
-            // Text(
-            //   newsModel.date,
-            //   style: NewsTextStyle.date,
-            //   textAlign: TextAlign.end,
-            // ),
-            SizedBox(
-              height: screenSize.height * 0.4,
+              height: screenSize.height * 0.3,
               width: screenSize.width * 0.9,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
@@ -55,18 +46,22 @@ class ArticleScreen extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: screenSize.height * 0.01,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: screenSize.width * 0.04,
+                  horizontal: screenSize.width * 0.05,
                   vertical: screenSize.width * 0.01),
               child: Text(
                 newsModel.title,
                 style: NewsTextStyle.articleTitle,
+                textAlign: TextAlign.start,
               ),
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.all(screenSize.width * 0.04),
+                padding: EdgeInsets.all(screenSize.width * 0.05),
                 child: Text(
                   newsModel.text,
                   style: NewsTextStyle.articleText,

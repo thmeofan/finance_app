@@ -7,17 +7,14 @@ import '../data/repository/onboarding_repository.dart';
 import '../views/app/views/home_screen.dart';
 import '../views/news/views/article_screen.dart';
 import '../views/onboarding_screen/view/onboarding_screen.dart';
-import '../views/profile/views/settings_screen.dart';
+import '../views/operation/views/operation_screen.dart';
+import '../views/profile/views/profile_screen.dart';
 
 abstract class AppRoutes {
   static const home = 'home';
   static const welcome = 'welcome';
-  static const categories = 'categories';
-  static const community = 'community';
-  static const news = 'news';
-  static const calendar = 'calendar';
   static const profile = 'profile';
-  static const matches = 'matches';
+  static const operation = 'oparetion';
   static const article = 'article';
 
   static MaterialPageRoute onGenerateRoute(RouteSettings settings) {
@@ -31,25 +28,14 @@ abstract class AppRoutes {
         child = const HomeScreen();
       case profile:
         child = const ProfileScreen();
-      // case quiz:
-      //   List<Question> questions = settings.arguments as List<Question>;
-      //   void resetQuestions() {
-      //     for (var question in questions) {
-      //       question.isLocked = false;
-      //       question.selectedOption = null;
-      //     }
-      //   }
-      //   child = QuizScreen(
-      //     questions: questions,
-      //     onRetakeQuiz: resetQuestions,
-      //   );
+      case operation:
+        child = OperationScreen();
+
       case article:
         NewsModel news = settings.arguments as NewsModel;
         child = ArticleScreen(
           newsModel: news,
         );
-      // case home:
-      //   child = HomeScreen();
       default:
         child = BlocProvider(
           create: (context) => onboardingCubit,

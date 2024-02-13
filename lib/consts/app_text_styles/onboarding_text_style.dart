@@ -5,23 +5,23 @@ import '../app_colors.dart';
 class OnboardingTextStyle {
   static const TextStyle introduction = TextStyle(
     fontFamily: 'SF Pro Display',
-    fontSize: 22.0,
-    fontWeight: FontWeight.w700,
-    height: 24.0 / 22.0,
-  //  color: AppColors.whiteColor,
+    fontSize: 20.0,
+    fontWeight: FontWeight.w800,
+    // height: 24.0 / 20.0,
+    //  color: AppColors.whiteColor,
   );
   static const TextStyle description = TextStyle(
     fontFamily: 'SF Pro Display',
-    fontSize: 12.0,
+    fontSize: 14.0,
     fontWeight: FontWeight.w400,
-    height: 14.0 / 11.0,
-   // color: AppColors.whiteColor,
+    //  height: 20.0 / 11.0,
+    // color: AppColors.whiteColor,
   );
   static const TextStyle screenTitle = TextStyle(
     fontFamily: 'SF Pro Display',
-    fontSize: 20.0,
+    fontSize: 18.0,
     fontWeight: FontWeight.w700,
     height: 24.0 / 20.0,
-  //  color: AppColors.whiteColor,
+    color: Colors.white,
   );
 }

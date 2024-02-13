@@ -1,9 +1,12 @@
+import 'package:finance_app/consts/app_text_styles/synopsis_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../consts/app_colors.dart';
+import '../../../util/app_routes.dart';
 
-class PersonalOfferBanner extends StatelessWidget {
-  const PersonalOfferBanner({super.key});
+class OperationBanner extends StatelessWidget {
+  const OperationBanner({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,50 +25,57 @@ class PersonalOfferBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           color: AppColors.lightGreyColor,
         ),
-        width: size.width * 0.9,
+        width: size.width * 0.95,
         height: size.height * 0.17,
-        child: Stack(
+        child: Row(
           children: [
-            Column(children: [
-              SizedBox(height: size.height * 0.015),
-              Container(
-                height: size.height * 0.03,
-                width: size.width * 0.3,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: AppColors.lightGreyColor,
+            Image.asset(
+              'assets/images/currency_crush_coins.png',
+              fit: BoxFit.contain,
+              width: size.width * 0.4,
+              height: size.height * 0.12,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Column(children: [
+                SizedBox(height: size.height * 0.02),
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/icons/wallet.svg'),
+                    SizedBox(width: size.width * 0.02),
+                    const Text(
+                      'Ваши доходы',
+                      style: SynopsisTextStyle.banner,
+                    ),
+                    SizedBox(width: size.width * 0.02),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(AppRoutes.operation);
+                      },
+                      icon: SvgPicture.asset(
+                          'assets/icons/chevron-arrow-left.svg'),
+                    ),
+                  ],
                 ),
-                child: Padding(
-                  padding: EdgeInsets.all(
-                    size.width * 0.003,
-                  ),
-                  child: Text(
-                    '-15%',
-                  //  style: AppTextStyles.idNumber,
-                    textAlign: TextAlign.center,
-                  ),
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/icons/wallet.svg'),
+                    SizedBox(width: size.width * 0.02),
+                    const Text(
+                      'Ваши расходы',
+                      style: SynopsisTextStyle.banner,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(AppRoutes.operation);
+                      },
+                      icon: SvgPicture.asset(
+                          'assets/icons/chevron-arrow-left.svg'),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: size.height * 0.015),
-              Padding(
-                padding: EdgeInsets.all(size.height * 0.01),
-                child: const Text(
-                  'Special offer\n for you!',
-                 // style: AppTextStyles.personalBannerStyle,
-                  // textAlign: TextAlign.center,
-                ),
-              )
-            ]),
-            Positioned(
-              right: 0,
-              top: 0,
-              child: Image.asset(
-                'assets/images/currency_crush_coins.png',
-                fit: BoxFit.cover,
-                width: size.width * 0.5,
-                height: size.height * 0.17,
-              ),
-            )
+              ]),
+            ),
           ],
         ),
       ),
